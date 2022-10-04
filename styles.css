@@ -1,0 +1,7 @@
+#container {
+display: grid;
+width: 500px;
+aspect-ratio: 1;
+border: 1px solid black;
+grid-template-columns: repeat(16, 1fr);
+}
