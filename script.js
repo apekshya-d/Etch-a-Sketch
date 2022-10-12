@@ -7,13 +7,12 @@ let slider = document.querySelector('#myRange');
 let output = document.querySelector('#output');
 
 const MODES = {
-    GREYSCALE: 'greyscale',
     COLOR: 'color',
     RAINBOW: 'rainbow',
     ERASER: 'eraser',
 };
-
-let mode = MODES.GREYSCALE;
+let selectedColor = 'black';
+let mode = MODES.COLOR;
 let size = slider.value ** 2;
 let drawMode = false;
 output.innerHTML = slider.value;
@@ -34,32 +33,42 @@ clear.addEventListener('click',()=>{
 
 colorButton.addEventListener('click', ()=>{
     mode = MODES.COLOR;
+    colorButton.classList.add('activeMode');
+    eraser.classList.remove('activeMode');
+    rainbowButton.classList.remove('activeMode');
 });
 
 eraser.addEventListener('click', ()=>{
     mode = MODES.ERASER;
-});
+    eraser.classList.add('activeMode');
+    colorButton.classList.remove('activeMode');
+    rainbowButton.classList.remove('activeMode');
+});    
 
 rainbowButton.addEventListener('click',()=>{
     mode = MODES.RAINBOW;
+    rainbowButton.classList.add('activeMode');
+    eraser.classList.remove('activeMode');
+    colorButton.classList.remove('activeMode');
 });
 
-document.querySelector('#colorSelector').addEventListener('change', (e)=>{
-    MODES.COLOR = e.target.value;
+document.querySelector('#colorSelector').addEventListener('input', (e)=>{
+    selectedColor = e.target.value;
+    document.querySelector('.selector').style.backgroundColor = e.target.value;
 });
 
 
 function draw() {
     for (let i = 0; i < size; i++){
-    let cell = document.createElement('div');
-    container.appendChild(cell);
-    cell.addEventListener('click', ()=>{
-        drawMode = !drawMode;
-        setBackgroundColor(cell);
-    });
-    cell.addEventListener("mouseenter", ()=>{
-        if(drawMode){setBackgroundColor(cell)};
-    } );
+        let cell = document.createElement('div');
+        container.appendChild(cell);
+        cell.addEventListener('click', ()=>{
+            drawMode = !drawMode;
+            setBackgroundColor(cell);
+        });
+        cell.addEventListener("mouseenter", ()=>{
+            if(drawMode){setBackgroundColor(cell)};
+        });
     }
 }
 
@@ -72,11 +81,8 @@ function removeChildNodes(){
 function setBackgroundColor(cell){
     
     switch(mode){
-        case MODES.GREYSCALE:
-            cell.style.backgroundColor = 'black';
-            break;
         case MODES.COLOR:
-            cell.style.backgroundColor = MODES.COLOR;
+            cell.style.backgroundColor = selectedColor;
             break;
         case MODES.ERASER:
             cell.style.backgroundColor = 'white';

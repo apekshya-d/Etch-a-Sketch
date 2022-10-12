@@ -1,7 +1,168 @@
+body{
+    background-color: #fff4eb;
+    margin: 0;
+    padding: 0;
+}
+
 #container {
 display: grid;
 width: 500px;
 aspect-ratio: 1;
 border: 1px solid black;
-grid-template-columns: repeat(16, 1fr);
+grid-template-columns: repeat(72, 1fr);
+background-color: white;
+box-shadow: 0 0 10px 0.5px rgb(169, 157, 139);
 }
+
+h1 {
+    font-size: 4em;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #2c2518fe;
+    display: flex;
+    justify-content: center;
+    padding-left: 70px;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+}
+
+.options {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    color: #2c2518fe;
+
+}
+
+button {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 180px;
+    height: 40px;
+    border: solid 1px black;
+    border-radius: 8px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    color: #2c2518fe;
+}
+
+button:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 0 10px rgb(169, 157, 139);
+}
+
+.slideContainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px black;
+    cursor: pointer;
+    transition: all .2s ease-in-out; 
+
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #2b2b2a;
+}
+
+.slider:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 10px grey;
+}
+
+#colorSelector {
+    height: 100px;
+    width: 100px;
+    opacity: 0;
+    cursor: pointer;
+
+}
+
+.selector {
+    background-color: black;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all .2s ease-in-out; 
+
+}
+
+.selector:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 0 10px grey;
+}
+
+.activeMode {
+    background-color: #2b2b2a;
+    color: white;
+    transition: background-color 0.20s;
+}
+
+p {
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-size: 1.2em;
+color: #2c2518fe;
+}
+
+@media (max-width: 425px) {
+
+    .main{
+        flex-direction: column-reverse;
+        gap: 25px;
+    }
+
+    #container {
+        width: 90vw;
+    }
+
+    h1 {
+        font-size: 2em;
+        padding-left: 0px;
+    }
+
+    .options {
+        flex-flow: row wrap;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    button {
+        width: 35vw;
+        order: 1;
+    }
+
+    p{
+        font-size: 0.9em;
+    }
+
+    .containerBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .selector , #colorSelector {
+        width: 70px;
+        height: 70px;
+    }
+}
+
